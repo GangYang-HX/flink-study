@@ -50,6 +50,7 @@ public class RedisLookupTest {
                 + "  'connector' = 'redis',\n"
                 + "  'hostname' = '127.0.0.1',\n"
                 + "  'port' = '6379',\n"
+//                + "  'password' = '123456',\n"
                 + "  'format' = 'json',\n"
                 + "  'lookup.cache.max-rows' = '500',\n"
                 + "  'lookup.cache.ttl' = '3600',\n"
@@ -59,7 +60,7 @@ public class RedisLookupTest {
         String joinSql = "SELECT o.f0, o.f1, c.name, c.name1, c.score\n"
                 + "FROM leftTable AS o\n"
                 + "LEFT JOIN dimTable FOR SYSTEM_TIME AS OF o.proctime AS c\n"
-                + "ON o.f0 = c.name";
+                + "ON o.f1 = c.name";
 
         TableResult dimTable = tEnv.executeSql(sql);
 
